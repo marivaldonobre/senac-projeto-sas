@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAS - Sistema de Agendamento de Serviços</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="logo">
+            <h1>SAS</h1>
+            <p>Sistema de Agendamento de Serviços</p>
+        </header>
+
+        <!-- TELA INICIAL -->
+        <section id="telaInicial" class="painel">
+            <h2>Bem-vindo ao SAS!</h2>
+            <p>Conectando profissionais a pessoas que precisam de serviços.</p>
+
+            <button id="btnLogin">Entrar</button>
+            <button id="btnCadastro" class="secundario">Cadastre-se</button>
+        </section>
+
+        <!-- LOGIN -->
+        <section id="telaLogin" class="painel oculto">
+            <h2>Acessar minha conta</h2>
+
+            <form id="formLogin">
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+
+                <button type="submit">Entrar</button>
+            </form>
+
+            <button class="link" id="voltarLogin">Voltar</button>
+        </section>
+
+        <!-- ESCOLHA DO PERFIL -->
+        <section id="telaPerfil" class="painel oculto">
+            <h2>Como você pretende utilizar o SAS?</h2>
+            <p>Escolha o perfil que melhor representa você.</p>
+
+            <div class="perfis">
+
+                <button class="perfil" data-perfil="prestador">
+                    <span>💼</span>
+                    <strong>Prestador de serviços</strong>
+                    <small>Quero oferecer meus serviços.</small>
+                </button>
+
+                <button class="perfil" data-perfil="cliente">
+                    <span>🔎</span>
+                    <strong>Cliente</strong>
+                    <small>Quero encontrar e contratar serviços.</small>
+                </button>
+
+            </div>
+
+            <button class="link" id="voltarPerfil">Voltar</button>
+        </section>
+
+        <!-- FORMULÁRIO DE CADASTRO -->
+        <section id="telaCadastro" class="painel oculto">
+            <h2>Crie sua conta</h2>
+            <p id="tipoCadastro"></p>
+
+            <form id="formCadastro">
+                <input type="text" id="nome" placeholder="Nome completo" required>
+                <input type="email" id="email" placeholder="E-mail" required>
+                <input type="password" id="senha" placeholder="Senha" minlength="6" required>
+
+                <button type="submit">Finalizar cadastro</button>
+            </form>
+
+            <button class="link" id="voltarCadastro">Voltar</button>
+        </section>
+
+        <!-- PAINEL DO PRESTADOR -->
+        <section id="painelPrestador" class="painel oculto">
+
+            <h2 id="boasVindasPrestador">Olá!</h2>
+            <p>Bem-vindo ao seu painel profissional do SAS.</p>
+
+            <div class="menuPrestador">
+
+                <button class="opcaoPrestador" id="btnMeusServicos">
+                    💼
+                    <strong>Meus serviços</strong>
+                    <small>Gerencie seus serviços.</small>
+                </button>
+
+                <button class="opcaoPrestador" id="btnAgendamentos">
+                    📅
+                    <strong>Agendamentos</strong>
+                    <small>Consulte seus agendamentos.</small>
+                </button>
+
+                <button class="opcaoPrestador" id="btnNovoServico">
+                    ➕
+                    <strong>Cadastrar serviço</strong>
+                    <small>Adicione novos serviços.</small>
+                </button>
+
+                <button class="opcaoPrestador" id="btnMeuPerfil">
+                    👤
+                    <strong>Meu perfil</strong>
+                    <small>Consulte seus dados.</small>
+                </button>
+
+            </div>
+
+            <div class="mensagemPainel">
+
+                <div class="areaMeusServicos">
+                    <h3>Meus serviços cadastrados</h3>
+                    <div id="listaServicos">
+                        <p class="semServicos">Você ainda não cadastrou nenhum serviço.</p>
+                    </div>
+                </div>
+
+                <strong>Comece a utilizar o SAS!</strong>
+                <p>Cadastre seu primeiro serviço para começar a receber solicitações de clientes.</p>
+
+            </div>
+
+            <button class="link" id="btnSair">Sair da conta</button>
+
+            <!-- EXCLUSÃO DA CONTA DO PRESTADOR -->
+            <button class="link" id="btnApagarContaPrestador">
+                Apagar minha conta
+            </button>
+
+        </section>
+
+        <!-- TELA DE CADASTRO DE SERVIÇOS -->
+        <section id="telaCadastroServico" class="painel oculto">
+
+            <h2>Cadastrar novo serviço</h2>
+            <p>Informe os detalhes do serviço que você deseja oferecer.</p>
+
+            <form id="formServico">
+
+                <label for="nomeServico">Nome do serviço</label>
+                <input
+                    type="text"
+                    id="nomeServico"
+                    placeholder="Ex.: Corte de cabelo masculino"
+                    required
+                >
+
+                <label for="categoriaServico">Categoria</label>
+                <select id="categoriaServico" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Beleza e estética">Beleza e estética</option>
+                    <option value="Limpeza">Limpeza</option>
+                    <option value="Manutenção">Manutenção</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Educação">Educação</option>
+                    <option value="Saúde e bem-estar">Saúde e bem-estar</option>
+                    <option value="Outros">Outros</option>
+                </select>
+
+                <label for="descricaoServico">Descrição</label>
+                <textarea
+                    id="descricaoServico"
+                    placeholder="Descreva o serviço oferecido..."
+                    rows="4"
+                    required
+                ></textarea>
+
+                <label for="precoServico">Preço (R$)</label>
+                <input
+                    type="number"
+                    id="precoServico"
+                    placeholder="Ex.: 50,00"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+
+                <label for="duracaoServico">Duração do atendimento</label>
+                <select id="duracaoServico" required>
+                    <option value="">Selecione a duração</option>
+                    <option value="30 minutos">30 minutos</option>
+                    <option value="45 minutos">45 minutos</option>
+                    <option value="1 hora">1 hora</option>
+                    <option value="1 hora e 30 minutos">1 hora e 30 minutos</option>
+                    <option value="2 horas">2 horas</option>
+                    <option value="3 horas">3 horas</option>
+                    <option value="Personalizada">Personalizada</option>
+                </select>
+
+                <label for="localServico">Local de atendimento</label>
+                <select id="localServico" required>
+                    <option value="">Selecione uma opção</option>
+                    <option value="No estabelecimento">No meu estabelecimento</option>
+                    <option value="Na residência do cliente">Na residência do cliente</option>
+                    <option value="Online">Atendimento online</option>
+                    <option value="A combinar">A combinar</option>
+                </select>
+
+                <button type="submit">Cadastrar serviço</button>
+
+            </form>
+
+            <button class="link" id="btnVoltarServicos">Voltar ao painel</button>
+
+        </section>
+
+        <!-- PAINEL DO CLIENTE -->
+        <section id="painelCliente" class="painel oculto">
+
+            <h2 id="boasVindasCliente">Olá!</h2>
+            <p>Encontre os serviços que você precisa.</p>
+
+            <div class="buscaCliente">
+
+                <h3>O que você está procurando?</h3>
+
+                <input
+                    type="search"
+                    id="campoBusca"
+                    placeholder="Digite o nome do serviço..."
+                >
+
+                <button id="btnBuscar">Buscar serviços</button>
+
+                <div class="catalogoCliente">
+
+                    <h3>Serviços disponíveis</h3>
+
+                    <div id="listaServicosCliente">
+                        <p class="semServicos">
+                            Ainda não existem serviços cadastrados.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="menuCliente">
+
+                <button class="opcaoCliente" id="btnBuscarServicos">
+                    🔎
+                    <strong>Buscar serviços</strong>
+                    <small>Encontre profissionais.</small>
+                </button>
+
+                <button class="opcaoCliente" id="btnMeusAgendamentos">
+                    📅
+                    <strong>Meus agendamentos</strong>
+                    <small>Consulte suas reservas.</small>
+                </button>
+
+                <button class="opcaoCliente" id="btnFavoritos">
+                    ❤️
+                    <strong>Favoritos</strong>
+                    <small>Seus profissionais salvos.</small>
+                </button>
+
+                <button class="opcaoCliente" id="btnPerfilCliente">
+                    👤
+                    <strong>Meu perfil</strong>
+                    <small>Seus dados pessoais.</small>
+                </button>
+
+            </div>
+
+            <button class="link" id="btnSairCliente">Sair da conta</button>
+
+            <!-- EXCLUSÃO DA CONTA DO CLIENTE -->
+            <button class="link" id="btnApagarContaCliente">
+                Apagar minha conta
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
